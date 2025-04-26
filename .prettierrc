@@ -6,5 +6,22 @@
   "singleQuote": false,
   "printWidth": 80,
   "arrowParens": "avoid",
-  "singleAttributePerLine": true
+  "singleAttributePerLine": true,
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports"
+  ],
+  "importOrder": [
+    "^react$",
+    "<THIRD_PARTY_MODULES>",
+    "^@/app/(.*)$",
+    "^@/pages/(.*)$",
+    "^@/widgets/(.*)$",
+    "^@/features/(.*)$",
+    "^@/shared/components(.*)$",
+    "^@/shared/libs(.*)$",
+    "^@/shared/ui(.*)$",
+    "^@/shared/icons(.*)$",
+    "^[./]"
+  ],
+  "importOrderSortSpecifiers": true
 }

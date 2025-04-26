@@ -15,14 +15,11 @@ module.exports = {
 	resolve: {
 		alias: {
 			"@/src": path.resolve(__dirname, "src"),
-			"@/components": path.resolve(__dirname, "src", "components"),
-			"@/assets": path.resolve(__dirname, "src", "assets"),
-			"@/api": path.resolve(__dirname, "src", "api"),
-			"@/hooks": path.resolve(__dirname, "src", "hooks"),
-			"@/services": path.resolve(__dirname, "src", "services"),
-			"@/data": path.resolve(__dirname, "src", "data"),
-			"@/utils": path.resolve(__dirname, "src", "utils"),
-			"@/contexts": path.resolve(__dirname, "src", "contexts"),
+			"@/app": path.resolve(__dirname, "src", "app"),
+			"@/pages": path.resolve(__dirname, "src", "pages"),
+			"@/widgets": path.resolve(__dirname, "src", "widgets"),
+			"@/features": path.resolve(__dirname, "src", "features"),
+			"@/shared": path.resolve(__dirname, "src", "shared"),
 		},
 		extensions: [".js", ".jsx", ".scss"],
 	},
@@ -50,7 +47,16 @@ module.exports = {
 				test: /\.s[ac]ss|css$/i,
 				use: [
 					"style-loader",
-					"css-loader",
+					{
+						loader: "css-loader",
+						options: {
+							modules: {
+								auto: true,
+								localIdentName: "[local]__[hash:base64:5]",
+								namedExport: false,
+							},
+						},
+					},
 					"postcss-loader",
 					"sass-loader",
 				],
@@ -62,7 +68,10 @@ module.exports = {
 					loader: "babel-loader",
 					options: {
 						cacheDirectory: true,
-						presets: ["@babel/preset-env", "@babel/preset-react"],
+						presets: [
+							"@babel/preset-env",
+							["@babel/preset-react", { runtime: "automatic" }],
+						],
 					},
 				},
 			},
